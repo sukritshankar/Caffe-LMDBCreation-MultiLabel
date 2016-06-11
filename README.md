@@ -4,7 +4,7 @@ LMDB Creation in Caffe is conventionally supported for a single label setting, i
 -------------------------------
 For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *corresponding* labels will be a N x M x 1 x 1 4D blob. The necessary steps can now be listed as follows: 
 
-(1) Shuffle all the data in sync with their corresponding labels before proceeding onto the next steps, as we will not use any shuffle operation during LMDB creation.  
+(1) **Shuffling of data:** Shuffle all the data in sync with their corresponding labels before proceeding onto the next steps, as we will not use any shuffle operation during LMDB creation.  
 
 (2) Make a data.txt file which lists the data file names (in order) and a dummy label (which will never be used) for each file. 
 
