@@ -6,7 +6,7 @@ For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *c
 
 (1) **Shuffling of data:** Shuffle all the data in sync with their corresponding labels before proceeding onto the next steps, as we will not use any shuffle operation during LMDB creation.  
 
-(2) **Specifying data files:** Make a data.txt file which lists the data file names (in order) and a dummy label (which will never be used) for each file. 
+(2) **Specifying data files:** Make a data.txt file which lists the data file names (in order) and a dummy label (which will never be used) for each file. The data.txt file in the repository shows an example snippet of how to list the image file names with dummy labels. 
 
 (3) **Creating data LMDB and the mean:** Use create_data_lmdb.sh script to create the data_lmdb database from the data.txt file, and lets call it data_lmdb. Use data_lmdb to create the mean file with create_mean.sh. Both the create_data_lmdb and create_mean files will need [Caffe](https://github.com/BVLC/caffe). 
 
