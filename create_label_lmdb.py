@@ -22,10 +22,10 @@ import caffe
 
 # +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 # Please set the following values and paths as per your needs 
-N = 162770     																# Number of data instances  
-M = 40   																	# Number of possible labels for each data instance 
+N = 162770																	# Number of data instances  
+M = 40																		# Number of possible labels for each data instance 
 output_lmdb_path = '/home/sukrit/Desktop/caffe_project/lmdbs/label_lmdb'	# Path of the output label LMDB
-labels_mat_file = 'labels.mat'    											# Mat file for labels N x M 
+labels_mat_file = 'labels.mat'												# Mat file for labels N x M 
 # +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
@@ -43,8 +43,8 @@ X[:,:,0,0] = mat_contents['labels']
 # To instead check the variable names in the mat file, and use them in a more judicious way, do 
 # array_names = scipy.io.whosmat(labels_mat_file) 	
 # print '\n Array Names \n', array_names
-print X                                  # Check to see if the contents are well populated within the expected range
-print X.shape            				 # Check to see if X is of shape N x M x 1 x 1     
+print X									# Check to see if the contents are well populated within the expected range
+print X.shape							# Check to see if X is of shape N x M x 1 x 1     
 
 with env.begin(write=True) as txn:
     # txn is a Transaction object
@@ -61,7 +61,7 @@ with env.begin(write=True) as txn:
         txn.put(str_id.encode('ascii'), datum.SerializeToString())
 
 	# Print the progress 
-	print 'Done Image = ' + str(i)
+	print 'Done Label Writing for Data Instance = ' + str(i)
 
 
 

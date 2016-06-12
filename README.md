@@ -8,9 +8,9 @@ For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *c
 
 (2) **Specifying data files:** Make a data.txt file which lists the data file names (in order) and a dummy label (which will never be used) for each file. The data.txt file in the repository shows an example snippet of how to list the image file names with dummy labels. 
 
-(3) **Creating data LMDB and the mean:** Use create_data_lmdb.sh script to create the data_lmdb database from the data.txt file. Use data_lmdb to create the mean file with create_mean.sh. Both the create_data_lmdb and create_mean files will need [Caffe](https://github.com/BVLC/caffe). 
+(3) **Creating data LMDB and the mean:** Use create_data_lmdb.sh script to create the data_lmdb database from the data.txt file. Use data_lmdb to create the mean file with create_mean.sh. Both the create_data_lmdb and create_mean scripts need [Caffe](https://github.com/BVLC/caffe). 
 
-(4) **Specifying corresponding labels for the data:** For the order of the data files specified in data.txt, let the corresponding labels be stored in a labels.mat file as a N x M matrix. We will import this into python. Alternatively, you can have this N x M matrix directly in the numpy format. In either case, format the label values to be integers in [0,255]. The labels.mat file in this repository is a 162770 x 40 matrix, and is included just as an example.
+(4) **Specifying corresponding labels for the data:** For the order of the data files specified in data.txt, let the corresponding labels be stored in a labels.mat file as an N x M matrix. We will import this MAT file into python. Alternatively, you can have this N x M matrix directly in the numpy format. In either case, make sure that the label values are formatted to be integers in [0,255]. The labels.mat file in this repository is a 162770 x 40 matrix, and is included just as an example.
 
 (5) **Creating label LMDB:** Use create_label_lmdb.py to form a label_lmdb database with labels.mat file (or any alternative specification of N x M matrix)
 
@@ -19,4 +19,4 @@ For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *c
 In all cases, please take care of the file paths as per your setup. 
 
 -------------------------------
-You should now be ready to train your prototxt (step 6) with a multi-label loss (like sigmoid cross-entropy) with your data and labels both in LMDB format. 
+You should now be ready to train your prototxt (step 6) using [Caffe](https://github.com/BVLC/caffe) with a multi-label loss (like sigmoid cross-entropy) with your data and labels both in LMDB format. 
