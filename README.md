@@ -14,7 +14,7 @@ For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *c
 
 (5) **Creating label LMDB:** Use create_label_lmdb.py to form a label_lmdb database with labels.mat file (or any alternative specification of N x M matrix)
 
-(6) **Prototxt modification:** Specify the respective data_lmdb, label_lmdb for train and validation datasets along with the mean file in your train prototxt as shown in train_vgg_11_sigmoid_cross_entropy_loss.prototxt. The idea is to essentially create two Caffe data layers, one for only the data instances and one for only the (corresponding) labels. Note the scaling of the labels in the transform_param of the DATA layesr. This is to convert the label range from [0,255] to [0,1] as per the requirement of the Sigmoid Cross Entropy Loss function. Depending on your multi-label loss function, the scaling parameter can be altered. 
+(6) **Prototxt modification:** Specify the respective data_lmdb, label_lmdb for train and validation datasets along with the mean file in your train prototxt as shown in train_vgg_11_sigmoid_cross_entropy_loss.prototxt. The idea is to essentially create two Caffe data layers, one for only the data instances and one for only the (corresponding) labels. Note the scaling of the labels in the transform_param of the DATA layers. This is to convert the label range from [0,255] to [0,1] as per the requirement of the Sigmoid Cross Entropy Loss function. Depending on your multi-label loss function, the scaling parameter can be altered. 
 
 In all cases, please take care of the file paths as per your setup. 
 
