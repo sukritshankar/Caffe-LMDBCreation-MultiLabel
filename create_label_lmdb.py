@@ -53,7 +53,7 @@ with env.begin(write=True) as txn:
         datum.channels = X.shape[1]
         datum.height = X.shape[2]
         datum.width = X.shape[3]
-        datum.data = X[i].tostring()  # or .tobytes() if numpy < 1.9 
+        datum.data = X[i].tostring()  	# or .tobytes() if numpy < 1.9 
         datum.label = int(y[i])
         str_id = '{:08}'.format(i)
 
