@@ -24,7 +24,7 @@ import caffe
 # Please set the following values and paths as per your needs 
 N = 162770									# Number of data instances  
 M = 40										# Number of possible labels for each data instance 
-output_lmdb_path = '/home/sukrit/Desktop/caffe_project/lmdbs/label_lmdb'	# Path of the output label LMDB
+output_lmdb_path = '/home/sukrit/Desktop/caffe_project/lmdbs/label_lmdb'   	# Path of the output label LMDB
 labels_mat_file = 'labels.mat'							# Mat file for labels N x M 
 # +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
