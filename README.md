@@ -1,16 +1,16 @@
 # CaffeLMDBCreationMultiLabel
-LMDB Creation in Caffe is conventionally supported for a single label setting, i.e. each given data instance has only one label. For a multi-label scenario (where each of N data instances can have M labels, M > 1), LMDB creation in Caffe is not straightforward. This code repository provides a way to create an LMDB for training and testing with a multi-label setting in Caffe. We will work with RGB image data here. 
+LMDB Creation in Caffe is conventionally supported for a single label setting, i.e. each given data instance has only one possible label. For a multi-label scenario (where each of N data instances can have M potential labels, M > 1), LMDB creation in Caffe is not straightforward. This code repository helps to create LMDBs for training and testing with a multi-label setting in Caffe. We will work with RGB image data here. 
 
 -------------------------------
 For a multi-label scenario, the data will be a N x H x W x 3 4D blob, and the *corresponding* labels will be a N x M x 1 x 1 4D blob. The necessary steps can now be listed as follows: 
 
-(1) **Shuffling of data:** Shuffle all the data in sync with their corresponding labels before proceeding onto the next steps, as we will not use any shuffle operation during LMDB creation.  
+(1) **Shuffling of data:** Shuffle all the data in sync with their corresponding labels before proceeding onto the next steps, as we will not use any shuffle operation during LMDB creation. In case you are not using a CNN which supports different image aspect ratios (like SPPNet), please also resize all the images to a common size. 
 
 (2) **Specifying data files:** Make a data.txt file which lists the data file names (in order) and a dummy label (which will never be used) for each file. The data.txt file in the repository shows an example snippet of how to list the image file names with dummy labels. 
 
-(3) **Creating data LMDB and the mean:** Use create_data_lmdb.sh script to create the data_lmdb database from the data.txt file, and lets call it data_lmdb. Use data_lmdb to create the mean file with create_mean.sh. Both the create_data_lmdb and create_mean files will need [Caffe](https://github.com/BVLC/caffe). 
+(3) **Creating data LMDB and the mean:** Use create_data_lmdb.sh script to create the data_lmdb database from the data.txt file. Use data_lmdb to create the mean file with create_mean.sh. Both the create_data_lmdb and create_mean files will need [Caffe](https://github.com/BVLC/caffe). 
 
-(4) **Specifying corresponding labels for the data:** For the order of the data files specified in data.txt, let the corresponding labels be stored in a labels.mat file as a N x M matrix. We will import this into python. Alternatively, you can have this N x M matrix directly in the numpy format. Scale the label values so that the min label value is 0 and the max is 255. 
+(4) **Specifying corresponding labels for the data:** For the order of the data files specified in data.txt, let the corresponding labels be stored in a labels.mat file as a N x M matrix. We will import this into python. Alternatively, you can have this N x M matrix directly in the numpy format. In either case, format the label values to be integers in [0,255]. The labels.mat file in this repository is a 162770 x 40 matrix, and is included just as an example.
 
 (5) **Creating label LMDB:** Use create_label_lmdb.py to form a label_lmdb database with labels.mat file (or any alternative specification of N x M matrix)
 
